@@ -1,0 +1,775 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}پنل کاربری{% endblock %}
+
+
+{% block content %}
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">
+
+
+                </div>
+                <div class="user-info">
+                    <h3 class="user-name"></h3>
+                    <span class="user-role"></span>
+                </div>
+                <button class="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-menu">
+                <ul class="menu-items">
+                    <li class="menu-item active">
+                        <a href="#profile" class="menu-link">
+                            <i class="fas fa-user-circle"></i>
+                            <span>پروفایل من</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#courses" class="menu-link">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>دوره‌های من</span>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="#tickets" class="menu-link">
+                            <i class="fas fa-play-circle"></i>
+                            <span>تیکت</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#notif" class="menu-link">
+                            <i class="fas fa-space-shuttle"></i>
+                            <span>اعلانات</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer ">
+                <div class="sidebar-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">۱۲۴</span>
+                        <span class="stat-label">ساعت یادگیری</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">۸</span>
+                        <span class="stat-label">دوره تکمیل شده</span>
+                    </div>
+                </div>
+                <button class="btn-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>خروج از حساب</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main" id="profile">
+            <!-- Dashboard Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <h1 class="page-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        داشبورد کاربری
+                    </h1>
+                    <p class="page-subtitle">خوش آمدید، علی جان! آخرین فعالیت‌های شما</p>
+                </div>
+
+                <div class="header-right">
+                    <div class="header-actions">
+                        <button class="btn-notification">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-count">۳</span>
+                        </button>
+                        <button class="btn-support">
+                            <i class="fas fa-headset"></i>
+                            <span>پشتیبانی</span>
+                        </button>
+                    </div>
+                    <div class="header-date">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>امروز: ۱۵ دی ۱۴۰۲</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Quick Stats -->
+            <section class="quick-stats">
+                <div class="stat-card">
+                    <div class="stat-icon primary">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۱۵</span>
+                        <span class="stat-label">دوره ثبت‌نام شده</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon success">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۳</span>
+                        <span class="stat-label">دوره در حال اجرا</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۲</span>
+                        <span class="stat-label">درخواست در انتظار</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon danger">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۴</span>
+                        <span class="stat-label">تیکت باز</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dashboard Sections -->
+            <div class="dashboard-content">
+                <!-- Profile Section -->
+                <section class="content-section">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-user-circle"></i>
+                            اطلاعات پروفایل
+                        </h2>
+                        <button class="btn-edit">
+                            <i class="fas fa-edit"></i>
+                            ویرایش پروفایل
+                        </button>
+                    </div>
+
+                    <div class="profile-info">
+                        <div class="profile-card">
+                            <div class="profile-avatar-large">
+                                <img src="https://via.placeholder.com/120" alt="پروفایل">
+                                <button class="avatar-change">
+                                    <i class="fas fa-camera"></i>
+                                </button>
+                            </div>
+
+                            <div class="profile-details">
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="detail-label">نام و نام خانوادگی:</span>
+                                        <span class="detail-value">علی محمدی</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">ایمیل:</span>
+                                        <span class="detail-value">ali.mohammadi@example.com</span>
+                                    </div>
+                                </div>
+
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="detail-label">شماره تماس:</span>
+                                        <span class="detail-value">۰۹۱۲۱۲۳۴۵۶۷</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">تاریخ عضویت:</span>
+                                        <span class="detail-value">۱۵ مهر ۱۴۰۱</span>
+                                    </div>
+                                </div>
+
+                                <div class="detail-row">
+                                    <div class="detail-item">
+                                        <span class="detail-label">سطح کاربری:</span>
+                                        <span class="detail-value badge-gold">طلایی</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <span class="detail-label">اعتبار حساب:</span>
+                                        <span class="detail-value badge-credit">۲۵۰,۰۰۰ تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-stats">
+                            <div class="stat-box">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">۷۸٪</span>
+                                    <span class="stat-label">میانگین پیشرفت</span>
+                                </div>
+                            </div>
+                            <div class="stat-box">
+                                <i class="fas fa-trophy"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">۸</span>
+                                    <span class="stat-label">گواهینامه کسب شده</span>
+                                </div>
+                            </div>
+                            <div id="courses" class="stat-box">
+                                <i class="fas fa-clock"></i>
+                                <div class="stat-info">
+                                    <span class="stat-number">۱۲۴</span>
+                                    <span class="stat-label">ساعت فعالیت</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- My Courses -->
+                <section class="content-section">
+                    <div  class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-graduation-cap"></i>
+                            دوره‌های من
+                        </h2>
+                        <a href="#" class="btn-view-all">
+                            مشاهده همه
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <div class="course-header">
+                                <div class="course-icon">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <div class="course-info">
+                                    <h3 class="course-title">آموزش React.js پیشرفته</h3>
+                                    <span class="course-category">فرانت‌اند</span>
+                                </div>
+                            </div>
+
+                            <div class="course-body">
+                                <p class="course-description">
+                                    یادگیری مفاهیم پیشرفته React شامل Hooks، Context API و Redux
+                                </p>
+
+                                <div class="course-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>۳۵ ساعت</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>پیشرفته</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-footer">
+                                <div class="course-progress">
+                                    <div class="progress-info">
+                                        <span>پیشرفت</span>
+                                        <span>۶۵٪</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <button class="btn-continue">
+                                    <i class="fas fa-play"></i>
+                                    ادامه
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-header">
+                                <div class="course-icon">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <div class="course-info">
+                                    <h3 class="course-title">Node.js و Express</h3>
+                                    <span class="course-category">بک‌اند</span>
+                                </div>
+                            </div>
+
+                            <div class="course-body">
+                                <p class="course-description">
+                                    توسعه API و سرویس‌های Backend با Node.js و فریمورک Express
+                                </p>
+
+                                <div class="course-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>۲۸ ساعت</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>متوسط</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-footer">
+                                <div class="course-progress">
+                                    <div class="progress-info">
+                                        <span>پیشرفت</span>
+                                        <span>۴۰٪</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                                <button class="btn-continue">
+                                    <i class="fas fa-play"></i>
+                                    ادامه
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="course-card">
+                            <div class="course-header">
+                                <div class="course-icon">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="course-info">
+                                    <h3 class="course-title">یادگیری ماشین با پایتون</h3>
+                                    <span class="course-category">هوش مصنوعی</span>
+                                </div>
+                            </div>
+
+                            <div class="course-body">
+                                <p class="course-description">
+                                    اصول یادگیری ماشین و تحلیل داده با کتابخانه‌های scikit-learn و pandas
+                                </p>
+
+                                <div class="course-meta">
+                                    <div class="meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span>۵۰ ساعت</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-chart-line"></i>
+                                        <span>پیشرفته</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-footer">
+                                <div class="course-progress">
+                                    <div class="progress-info">
+                                        <span>پیشرفت</span>
+                                        <span>۲۰٪</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 20%"></div>
+                                    </div>
+                                </div>
+                                <button class="btn-continue">
+                                    <i class="fas fa-play"></i>
+                                    ادامه
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Active Courses -->
+                <section class="content-section" >
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-play-circle"></i>
+                            دوره‌های فعال
+                        </h2>
+                        <div class="section-filter">
+                            <select class="filter-select">
+                                <option value="all">همه دوره‌ها</option>
+                                <option value="recent">آخرین فعالیت</option>
+                                <option value="progress">بیشترین پیشرفت</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="active-courses">
+                        <div class="active-course-item">
+                            <div class="course-thumb">
+                                <img src="https://via.placeholder.com/80" alt="React">
+                                <div class="course-badge">
+                                    <i class="fas fa-play"></i>
+                                </div>
+                            </div>
+
+                            <div class="course-details">
+                                <h3 class="course-name">React.js پیشرفته</h3>
+                                <div class="course-meta">
+                                    <span class="meta-text">
+                                        <i class="fas fa-calendar"></i>
+                                        آخرین فعالیت: امروز
+                                    </span>
+                                    <span class="meta-text">
+                                        <i class="fas fa-clock"></i>
+                                        ۲ ساعت باقیمانده
+                                    </span>
+                                </div>
+
+                                <div class="course-progress-full">
+                                    <div class="progress-header">
+                                        <span>جلسه ۱۲ از ۲۵</span>
+                                        <span>۴۸٪ تکمیل شده</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 48%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn-resume">
+                                <i class="fas fa-play-circle"></i>
+                                ادامه تماشا
+                            </button>
+                        </div>
+
+                        <div class="active-course-item">
+                            <div class="course-thumb">
+                                <img src="https://via.placeholder.com/80" alt="Node.js">
+                                <div class="course-badge">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+
+                            <div class="course-details">
+                                <h3 class="course-name">Node.js و Express</h3>
+                                <div class="course-meta">
+                                    <span class="meta-text">
+                                        <i class="fas fa-calendar"></i>
+                                        آخرین فعالیت: دیروز
+                                    </span>
+                                    <span class="meta-text">
+                                        <i class="fas fa-clock"></i>
+                                        ۵ ساعت باقیمانده
+                                    </span>
+                                </div>
+
+                                <div class="course-progress-full">
+                                    <div class="progress-header">
+                                        <span>جلسه ۸ از ۲۰</span>
+                                        <span>۴۰٪ تکمیل شده</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn-resume">
+                                <i class="fas fa-play-circle"></i>
+                                ادامه تماشا
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Course Requests -->
+                <section class="content-section" id="requests">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-clock"></i>
+                            درخواست‌های دوره
+                        </h2>
+                        <button class="btn-new-request">
+                            <i class="fas fa-plus"></i>
+                            درخواست جدید
+                        </button>
+                    </div>
+
+                    <div class="requests-table">
+                        <div class="table-header">
+                            <div class="table-col">نام دوره</div>
+                            <div class="table-col">تاریخ درخواست</div>
+                            <div class="table-col">وضعیت</div>
+                            <div class="table-col">عملیات</div>
+                        </div>
+
+                        <div class="table-row">
+                            <div class="table-col">
+                                <div class="request-info">
+                                    <i class="fab fa-docker"></i>
+                                    <div>
+                                        <strong>آموزش Docker</strong>
+                                        <small>۲۲ ساعت - پیشرفته</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-col">
+                                <span class="date">۱۰ دی ۱۴۰۲</span>
+                            </div>
+                            <div class="table-col">
+                                <span class="status pending">در انتظار تأیید</span>
+                            </div>
+                            <div class="table-col">
+                                <button class="btn-cancel">لغو درخواست</button>
+                            </div>
+                        </div>
+
+                        <div class="table-row">
+                            <div class="table-col">
+                                <div class="request-info">
+                                    <i class="fas fa-database"></i>
+                                    <div>
+                                        <strong id="tickets">MongoDB پیشرفته</strong>
+                                        <small>۱۸ ساعت - متوسط</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-col">
+                                <span class="date">۵ دی ۱۴۰۲</span>
+                            </div>
+                            <div class="table-col">
+                                <span class="status approved">تأیید شده</span>
+                            </div>
+                            <div class="table-col">
+                                <button class="btn-pay">پرداخت و شروع</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tickets Section -->
+                <div class="tickets-section">
+                    <!-- My Tickets -->
+                    <section class="content-section" id="tickets">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-ticket-alt"></i>
+                                تیکت‌های من
+                            </h2>
+                            <div class="ticket-filter">
+                                <button class="filter-btn active">همه</button>
+                                <button class="filter-btn">باز</button>
+                                <button class="filter-btn">پاسخ داده شده</button>
+                                <button class="filter-btn">بسته شده</button>
+                            </div>
+                        </div>
+
+                        <div class="tickets-list">
+                            <div class="ticket-item new">
+                                <div class="ticket-header">
+                                    <div class="ticket-info">
+                                        <h3 class="ticket-title">مشکل در اجرای کد React</h3>
+                                        <span class="ticket-id">#TKT-2023-0012</span>
+                                    </div>
+                                    <span class="ticket-status open">باز</span>
+                                </div>
+
+                                <p class="ticket-desc">
+                                    در بخش useState با خطای undefined مواجه می‌شوم. لطفا راهنمایی کنید.
+                                </p>
+
+                                <div class="ticket-footer">
+                                    <div class="ticket-meta">
+                                        <span class="meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            ۲ روز پیش
+                                        </span>
+                                        <span class="meta-item">
+                                            <i class="fas fa-tag"></i>
+                                            فنی
+                                        </span>
+                                    </div>
+                                    <button class="btn-view-ticket">
+                                        مشاهده پاسخ‌ها
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="ticket-item">
+                                <div class="ticket-header">
+                                    <div class="ticket-info">
+                                        <h3 class="ticket-title">درخواست延长 مهلت دوره</h3>
+                                        <span class="ticket-id">#TKT-2023-0011</span>
+                                    </div>
+                                    <span class="ticket-status answered">پاسخ داده شده</span>
+                                </div>
+
+                                <p class="ticket-desc">
+                                    به دلیل مسافرت کاری نیاز به تمدید مدت زمان دوره Node.js دارم.
+                                </p>
+
+                                <div class="ticket-footer">
+                                    <div class="ticket-meta">
+                                        <span class="meta-item">
+                                            <i class="fas fa-calendar"></i>
+                                            ۵ روز پیش
+                                        </span>
+                                        <span class="meta-item">
+                                            <i class="fas fa-tag"></i>
+                                            اداری
+                                        </span>
+                                    </div>
+                                    <button class="btn-view-ticket">
+                                        مشاهده پاسخ‌ها
+                                        <i class="fas fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- New Ticket -->
+                    <section class="content-section" id="new-ticket">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-plus-circle"></i>
+                                ارسال تیکت جدید
+                            </h2>
+                        </div>
+
+                        <form class="ticket-form">
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-heading"></i>
+                                    موضوع تیکت
+                                </label>
+                                <input type="text" class="form-input" placeholder="موضوع خود را وارد کنید">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-tag"></i>
+                                        دسته‌بندی
+                                    </label>
+                                    <select class="form-select">
+                                        <option value="">انتخاب دسته‌بندی</option>
+                                        <option value="technical">مشکل فنی</option>
+                                        <option value="content">محتوا و آموزش</option>
+                                        <option value="financial">مالی و پرداخت</option>
+                                        <option value="other">سایر</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        <i class="fas fa-priority-high"></i>
+                                        اولویت
+                                    </label>
+                                    <select class="form-select">
+                                        <option value="low">کم</option>
+                                        <option value="medium" selected>متوسط</option>
+                                        <option value="high">زیاد</option>
+                                        <option value="urgent">فوری</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-file-alt"></i>
+                                    شرح مشکل
+                                </label>
+                                <textarea class="form-textarea" rows="5" placeholder="شرح کامل مشکل یا درخواست خود را بنویسید..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">
+                                    <i class="fas fa-paperclip"></i>
+                                    پیوست فایل (اختیاری)
+                                </label>
+                                <div id='notif' class="file-upload">
+                                    <input type="file" id="fileUpload" class="file-input" accept=".jpg,.png,.pdf,.zip">
+                                    <label for="fileUpload" class="file-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>آپلود فایل</span>
+                                        <small>حداکثر ۱۰ مگابایت</small>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-cancel">انصراف</button>
+                                <button type="submit" class="btn-submit">
+                                    <i class="fas fa-paper-plane"></i>
+                                    ارسال تیکت
+                                </button>
+                            </div>
+                        </form>
+                    </section>
+                </div >
+
+                <!-- Recent Activity -->
+                <section class="content-section" id="activity">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-history"></i>
+                            فعالیت‌های اخیر
+                        </h2>
+                    </div>
+
+                    <div class="activity-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon success">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>شروع دوره React.js</h4>
+                                <p>جلسه ۱۲ دوره React.js پیشرفته را تماشا کردید</p>
+                                <span class="timeline-time">امروز - ۱۴:۳۰</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon primary">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>آزمون پایان فصل</h4>
+                                <p>آزمون فصل دوم Node.js با نمره ۹۵/۱۰۰ پشت سر گذاشته شد</p>
+                                <span class="timeline-time">دیروز - ۱۸:۱۵</span>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-icon warning">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h4>تیکت جدید</h4>
+                                <p>تیکت #TKT-2023-0012 با موضوع "مشکل فنی" ایجاد شد</p>
+                                <span class="timeline-time">۲ روز پیش - ۱۰:۴۵</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script !src="">
+    const sections = document.querySelectorAll('div[id]');
+const links = document.querySelectorAll('.sidebar-link');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (scrollY >= sectionTop - 60) {  // 60 میتونه padding یا header باشه
+      current = section.getAttribute('id');
+    }
+  });
+
+  links.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) {
+      link.classList.add('active');
+    }
+  });
+});
+
+    </script>
+{% endblock %}

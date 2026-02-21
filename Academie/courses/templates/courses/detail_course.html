@@ -1,0 +1,1959 @@
+{% extends 'shared/base.html' %}
+{% load jformat %}
+{% block title %}دوره {{ course.title }}{% endblock %}
+
+{% block content %}
+
+
+
+
+    <section class="section">
+        <div class="container">
+            <div class="">
+
+
+
+
+<article class="course-card dark-theme" data-course-id="{{ course.id }}" data-course-status="{{ course.status }}">
+    <!-- Course Header -->
+    <header class="course-header">
+        <span class="course-status-badge status-{{ course.status|lower }}">
+            {% if course.status == 'REGISTRATION' %}
+                در حال ثبت‌نام
+            {% elif course.status == 'ONGOING' %}
+                در حال برگزاری
+            {% else %}
+                پایان یافته
+            {% endif %}
+        </span>
+
+        <div class="course-teacher-chip">
+            <svg class="teacher-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <span>{{ course.teacher }}</span>
+        </div>
+    </header>
+
+    <!-- Course Content -->
+    <div class="course-content">
+        <!-- Image Section -->
+        <div class="course-visual-section">
+            <figure class="course-image-container">
+                <div class="image-overlay">
+                    <div class="overlay-content">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <span>پیش‌نمایش دوره</span>
+                    </div>
+                </div>
+                <img src="{{ course.image.url }}"
+                     alt="{{ course.title }}"
+                     class="course-main-image"
+                     loading="lazy"
+                     onerror="this.src='https://via.placeholder.com/600x400/2d3748/4a5568?text=Course+Image'">
+
+                <figcaption class="image-caption">
+                    <svg class="camera-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm8.94 3c-.46-4.17-3.77-7.48-7.94-7.94V1h-2v2.06C6.83 3.52 3.52 6.83 3.06 11H1v2h2.06c.46 4.17 3.77 7.48 7.94 7.94V23h2v-2.06c4.17-.46 7.48-3.77 7.94-7.94H23v-2h-2.06zM12 19c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/>
+                    </svg>
+                    تصویر دوره آموزشی
+                </figcaption>
+            </figure>
+
+            <!-- Quick Stats -->
+            <div class="course-quick-stats">
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                    <div class="stat-info">
+                        <span class="stat-label">شروع دوره</span>
+                        <span class="stat-value highlight">{{ course.start_date|date:"Y/m/d" }}</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                    </svg>
+                    <div class="stat-info">
+                        <span class="stat-label">پایان دوره</span>
+                        <span class="stat-value">
+                            {% if course.end_date %}
+                                {{ course.end_date|date:"Y/m/d" }}
+                            {% else %}
+                                <span class="unknown">نامشخص</span>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="course-info-section">
+            <div class="course-title-section">
+                <h1 class="course-main-title">
+                    <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 6h16v2H4zm0 4h16v2H4zm0 4h10v2H4z"/>
+                    </svg>
+                    {{ course.title }}
+                </h1>
+                <div class="course-meta-tags">
+                    <span class="meta-tag">
+                        <svg class="tag-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                        گواهینامه پایان
+                    </span>
+                    <span class="meta-tag">
+                        <svg class="tag-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                        </svg>
+                        امن
+                    </span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="course-description-section">
+                <h3 class="description-title">
+                    <svg class="desc-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    درباره این دوره
+                </h3>
+                <div class="description-content">
+                    {{ course.description|linebreaks }}
+                </div>
+            </div>
+
+            <!-- Messages Alerts -->
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                <div class="message-card message-{{ message.tags }}" role="alert">
+                    <div class="message-header">
+                        {% if message.tags == 'success' %}
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            موفقیت
+                        {% elif message.tags == 'error' %}
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                            </svg>
+                            خطا
+                        {% elif message.tags == 'warning' %}
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                            </svg>
+                            هشدار
+                        {% else %}
+                            <svg class="message-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            اطلاعیه
+                        {% endif %}
+                    </div>
+                    <div class="message-body">
+                        {{ message }}
+                    </div>
+                    <button class="message-close" aria-label="بستن">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Action Section -->
+            <div class="course-action-section">
+                {% if course.status == 'REGISTRATION' %}
+                <div class="action-card registration">
+                    <div class="action-header">
+                        <h3 class="action-title">ثبت‌نام در دوره</h3>
+                        <span class="action-badge">ویژه</span>
+                    </div>
+
+                    <div class="action-content">
+                        <p class="action-description">
+                            همین حالا در این دوره ثبت‌نام کنید و از مزایای آن بهره‌مند شوید
+                        </p>
+
+                        <div class="action-buttons">
+                            <a href="{% url 'request_course' course.id %}"
+                               class="action-btn primary-btn"
+                               data-action="register">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>ثبت درخواست شرکت</span>
+                            </a>
+
+                            <button class="action-btn secondary-btn" data-action="details">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                </svg>
+                                مشاهده جزییات
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                {% elif course.status == 'ONGOING' %}
+                <div class="action-card ongoing">
+                    <div class="action-header">
+                        <h3 class="action-title">دوره در حال برگزاری</h3>
+                        <div class="live-indicator">
+                            <span class="live-dot"></span>
+                            LIVE
+                        </div>
+                    </div>
+
+                    <div class="action-content">
+                        <p class="action-description">
+                            این دوره هم‌اکنون در حال برگزاری است. امکان ثبت‌نام جدید وجود ندارد.
+                        </p>
+
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <div class="progress-info">
+                                <span>پیشرفت دوره: 65%</span>
+                                <span>تا پایان: 15 روز</span>
+                            </div>
+                        </div>
+
+                        <button class="action-btn disabled-btn" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                                <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            دوره در حال برگزاری است
+                        </button>
+                    </div>
+                </div>
+
+                {% elif course.status == 'FINISHED' %}
+                <div class="action-card finished">
+                    <div class="action-header">
+                        <h3 class="action-title">دوره پایان یافته</h3>
+                        <span class="finished-badge">تکمیل شده</span>
+                    </div>
+
+                    <div class="action-content">
+                        <p class="action-description">
+                            این دوره به اتمام رسیده است. می‌توانید دوره‌های مشابه را مشاهده کنید.
+                        </p>
+
+                        <div class="completion-stats">
+                            <div class="stat">
+                                <span class="stat-number">142</span>
+                                <span class="stat-label">شرکت‌کننده</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">94%</span>
+                                <span class="stat-label">رضایت</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4.8</span>
+                                <span class="stat-label">امتیاز</span>
+                            </div>
+                        </div>
+
+                        <button class="action-btn disabled-btn" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                            دوره پایان یافته است
+                        </button>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Footer -->
+    <footer class="course-footer">
+        <div class="footer-actions">
+            <button class="footer-btn">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                </svg>
+                افزودن به علاقه‌مندی‌ها
+            </button>
+
+            <button class="footer-btn">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                </svg>
+                اشتراک‌گذاری
+            </button>
+
+            <button class="footer-btn">
+                <svg class="footer-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
+                دانلود سرفصل
+            </button>
+        </div>
+    </footer>
+</article>
+
+{#                <div>#}
+{##}
+{##}
+{##}
+{#                    <hr class="invis">#}
+{##}
+{#                    <div class="row">#}
+{#                        <div class="col-md-12">#}
+{#                            <div class="shop-extra">#}
+{#                                <ul class="nav nav-tabs">#}
+{#                                    <li class="active"><a data-toggle="tab" href="#home">پیش نیاز های دوره</a></li>#}
+{#                                    <li><a data-toggle="tab" href="#menu1">مهارت هایی که بعد اتمام این دوره می#}
+{#                                        آموزیم</a>#}
+{#                                    </li>#}
+{#                                    <li><a data-toggle="tab" href="#menu2">اعلانات</a></li>#}
+{#                                </ul>#}
+{##}
+{#                                <div class="tab-content">#}
+{#                                    <div dir="rtl" id="home" class="tab-pane fade in active">#}
+{#                                        <p>{{ course.requirements }}</p>#}
+{#                                    </div>#}
+{#                                    <div dir="rtl" id="menu1" class="tab-pane fade">#}
+{#                                        <p>{{ course.skills_after }}</p>#}
+{#                                    </div>#}
+{#                                    <div id="menu2" class="tab-pane fade">#}
+{#                                        <h3>Reviews</h3>#}
+{##}
+{#                                        <p>Your email address will not be published. Required fields are marked *</p>#}
+{##}
+{#                                        <div class="rating">#}
+{#                                            <p>Your Rating</p>#}
+{#                                            <i class="fa fa-star"></i>#}
+{#                                            <i class="fa fa-star"></i>#}
+{#                                            <i class="fa fa-star"></i>#}
+{#                                            <i class="fa fa-star"></i>#}
+{#                                            <i class="fa fa-star"></i>#}
+{#                                        </div>#}
+{##}
+{#                                        <hr class="invis">#}
+{##}
+{#                                        <form class="big-contact-form row" role="search">#}
+{#                                            <div class="col-md-12">#}
+{#                                                <textarea class="form-control" placeholder="Your reviews.."></textarea>#}
+{#                                            </div>#}
+{#                                            <div class="col-md-6">#}
+{#                                                <input type="text" class="form-control" placeholder="Enter your name..">#}
+{#                                            </div>#}
+{#                                            <div class="col-md-6">#}
+{#                                                <input type="email" class="form-control" placeholder="Enter email..">#}
+{#                                            </div>#}
+{#                                            <div class="col-md-12">#}
+{#                                                <button type="submit" class="btn btn-primary">Submit</button>#}
+{#                                            </div>#}
+{#                                        </form>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div><!-- end shop-extra -->#}
+{#                        </div><!-- end col -->#}
+{#                    </div><!-- end row -->#}
+{##}
+{#                    <hr class="invis">#}
+{##}
+{#                    <div class="related-products">#}
+{#                        <div class="text-widget">#}
+{#                            <h3>Related Products</h3>#}
+{#                        </div><!-- end title -->#}
+{##}
+{#                        <div class="row blog-grid shop-grid">#}
+{#                            <div class="col-md-3">#}
+{#                                <div class="course-box shop-wrapper">#}
+{#                                    <div class="image-wrap entry">#}
+{#                                        <img src="/static/upload/shop_01.jpg" alt="" class="img-responsive">#}
+{#                                        <div class="magnifier">#}
+{#                                            <a href="shop-single.html" title=""><i class="flaticon-add"></i></a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!-- end image-wrap -->#}
+{#                                    <div class="course-details shop-box text-center">#}
+{#                                        <h4>#}
+{#                                            <a href="shop-single.html" title="">Brown leather bag</a>#}
+{#                                            <small>Bags</small>#}
+{#                                        </h4>#}
+{#                                    </div>#}
+{#                                    <!-- end details -->#}
+{#                                    <div class="course-footer clearfix">#}
+{#                                        <div class="pull-left">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#"><i class="fa fa-shopping-basket"></i> Add Cart</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{##}
+{#                                        <div class="pull-right">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#">$441.00</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{#                                    </div><!-- end footer -->#}
+{#                                </div><!-- end box -->#}
+{#                            </div><!-- end col -->#}
+{##}
+{#                            <div class="col-md-3">#}
+{#                                <div class="course-box shop-wrapper">#}
+{#                                    <div class="image-wrap entry">#}
+{#                                        <img src="/static/upload/shop_02.jpg" alt="" class="img-responsive">#}
+{#                                        <div class="magnifier">#}
+{#                                            <a href="shop-single.html" title=""><i class="flaticon-add"></i></a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!-- end image-wrap -->#}
+{#                                    <div class="course-details shop-box text-center">#}
+{#                                        <h4>#}
+{#                                            <a href="shop-single.html" title="">Long coat jacket</a>#}
+{#                                            <small>Jackets</small>#}
+{#                                        </h4>#}
+{#                                    </div>#}
+{#                                    <!-- end details -->#}
+{#                                    <div class="course-footer clearfix">#}
+{#                                        <div class="pull-left">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#"><i class="fa fa-shopping-basket"></i> Add Cart</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{##}
+{#                                        <div class="pull-right">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#">$122.00</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{#                                    </div><!-- end footer -->#}
+{#                                </div><!-- end box -->#}
+{#                            </div><!-- end col -->#}
+{##}
+{#                            <div class="col-md-3">#}
+{#                                <div class="course-box shop-wrapper">#}
+{#                                    <div class="image-wrap entry">#}
+{#                                        <img src="/static/upload/shop_03.jpg" alt="" class="img-responsive">#}
+{#                                        <div class="magnifier">#}
+{#                                            <a href="shop-single.html" title=""><i class="flaticon-add"></i></a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!-- end image-wrap -->#}
+{#                                    <div class="course-details shop-box text-center">#}
+{#                                        <h4>#}
+{#                                            <a href="shop-single.html" title="">Style own glasses</a>#}
+{#                                            <small>Glasses</small>#}
+{#                                        </h4>#}
+{#                                    </div>#}
+{#                                    <!-- end details -->#}
+{#                                    <div class="course-footer clearfix">#}
+{#                                        <div class="pull-left">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#"><i class="fa fa-shopping-basket"></i> Add Cart</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{##}
+{#                                        <div class="pull-right">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#">$52.00</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{#                                    </div><!-- end footer -->#}
+{#                                </div><!-- end box -->#}
+{#                            </div><!-- end col -->#}
+{##}
+{#                            <div class="col-md-3">#}
+{#                                <div class="course-box shop-wrapper">#}
+{#                                    <div class="image-wrap entry">#}
+{#                                        <img src="/static/upload/shop_04.jpg" alt="" class="img-responsive">#}
+{#                                        <div class="magnifier">#}
+{#                                            <a href="shop-single.html" title=""><i class="flaticon-add"></i></a>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <!-- end image-wrap -->#}
+{#                                    <div class="course-details shop-box text-center">#}
+{#                                        <h4>#}
+{#                                            <a href="shop-single.html" title="">Printed white t-shirt</a>#}
+{#                                            <small>T-Shirts</small>#}
+{#                                        </h4>#}
+{#                                    </div>#}
+{#                                    <!-- end details -->#}
+{#                                    <div class="course-footer clearfix">#}
+{#                                        <div class="pull-left">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#"><i class="fa fa-shopping-basket"></i> Add Cart</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{##}
+{#                                        <div class="pull-right">#}
+{#                                            <ul class="list-inline">#}
+{#                                                <li><a href="#">$22.00</a></li>#}
+{#                                            </ul>#}
+{#                                        </div><!-- end left -->#}
+{#                                    </div><!-- end footer -->#}
+{#                                </div><!-- end box -->#}
+{#                            </div><!-- end col -->#}
+{#                        </div><!-- end row -->#}
+{#                    </div><!-- end related -->#}
+{#                </div>#}
+
+
+                <style>
+                    /* Course Additional Information Styles */
+.course-additional-info {
+    padding: 0;
+}
+
+/* Section Separator */
+.section-separator {
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(99, 102, 241, 0.3) 50%,
+        transparent 100%);
+    margin: 40px 0;
+    border: none;
+}
+
+/* Tabs Container */
+.tabs-container {
+    background: #1c1c2d;
+    border-radius: 16px;
+    border: 1px solid #334155;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Tabs Header */
+.tabs-header {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0 30px;
+    border-bottom: 1px solid #334155;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 30px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #6366f1;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.tab-btn.active {
+    color: #f8fafc;
+}
+
+.tab-btn.active::after {
+    transform: scaleX(1);
+}
+
+.tab-btn:hover:not(.active) {
+    color: #cbd5e1;
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.tab-icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active .tab-icon {
+    color: #6366f1;
+    transform: translateY(-2px);
+}
+
+.tabs-indicator {
+    position: relative;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.indicator-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 33.33%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Tabs Content */
+.tabs-content {
+    padding: 40px;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tab Content Header */
+.tab-content-header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+}
+
+.tab-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.8rem;
+    color: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.title-icon {
+    width: 32px;
+    height: 32px;
+    color: #6366f1;
+}
+
+.tab-subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+
+/* Tab Body */
+.tab-body {
+    color: #cbd5e1;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.prerequisites-content,
+.skills-content {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 30px;
+}
+
+/* Tips Card */
+.prerequisites-tips {
+    margin-top: 30px;
+}
+
+.tip-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 25px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(34, 211, 238, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    border-radius: 12px;
+}
+
+.tip-icon {
+    width: 40px;
+    height: 40px;
+    background: #10b981;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+.tip-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.tip-content h4 {
+    color: #10b981;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.tip-content p {
+    color: #cbd5e1;
+    margin: 0;
+}
+
+/* Skills Badges */
+.skills-badges {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 30px;
+}
+
+.skills-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.skills-header h4 {
+    color: #f8fafc;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.skill-level {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.level-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #334155;
+    transition: all 0.3s ease;
+}
+
+.level-dot.active {
+    background: #10b981;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.level-label {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+/* Skill Metrics */
+.skill-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.metric-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.metric-label {
+    width: 120px;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.metric-bar {
+    flex: 1;
+    height: 8px;
+    background: #334155;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.metric-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #34d399);
+    border-radius: 4px;
+    transition: width 1s ease;
+}
+
+.metric-value {
+    width: 50px;
+    color: #f8fafc;
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+    text-align: right;
+}
+
+/* Reviews Section */
+.reviews-section {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reviews-header {
+    margin-bottom: 30px;
+}
+
+.reviews-header h4 {
+    color: #f8fafc;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.form-note {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+/* Rating Section */
+.rating-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.01);
+    border-radius: 10px;
+}
+
+.rating-label {
+    color: #cbd5e1;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.star-rating {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.star-btn {
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #475569;
+    transition: all 0.3s ease;
+}
+
+.star-btn:hover {
+    color: #fbbf24;
+    transform: scale(1.2);
+}
+
+.star-btn.active {
+    color: #f59e0b;
+}
+
+.star-btn svg {
+    width: 32px;
+    height: 32px;
+}
+
+.rating-value {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    color: #f8fafc;
+}
+
+.current-rating {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #f59e0b;
+}
+
+/* Review Form */
+.review-form {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    color: #f8fafc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-input::placeholder {
+    color: #64748b;
+}
+
+.form-helper {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.form-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.info-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Related Courses Section */
+.related-courses-section {
+    margin-top: 50px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #334155;
+}
+
+.header-content {
+    flex: 1;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.8rem;
+    color: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+.view-all-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.view-all-link:hover {
+    color: #8b5cf6;
+    gap: 12px;
+}
+
+.link-icon {
+    width: 18px;
+    height: 18px;
+}
+
+/* Courses Grid */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+@media (max-width: 1200px) {
+    .courses-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Related Course Card */
+.course-card.related {
+    background: #1c1c2d;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.course-card.related:hover {
+    transform: translateY(-8px);
+    border-color: #6366f1;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.course-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 180px;
+}
+
+.course-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.course-card.related:hover .course-image {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.course-card.related:hover .image-overlay {
+    opacity: 1;
+}
+
+.quick-view-btn {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quick-view-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+.quick-view-btn svg {
+    width: 24px;
+    height: 24px;
+    color: #1c1c2d;
+}
+
+.course-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 6px 12px;
+    background: #6366f1;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+    z-index: 1;
+}
+
+.course-badge.discount {
+    background: #ef4444;
+}
+
+.course-badge.popular {
+    background: #f59e0b;
+}
+
+.course-content {
+    padding: 20px;
+}
+
+.course-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6366f1;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.category-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.course-title {
+    margin: 0 0 15px 0;
+}
+
+.course-link {
+    color: #f8fafc;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.course-link:hover {
+    color: #6366f1;
+}
+
+.course-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.meta-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.course-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid #334155;
+}
+
+.course-price {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.price-current {
+    color: #f8fafc;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.price-old {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.price-currency {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+.course-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    color: #6366f1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+    transform: translateY(-2px);
+}
+
+.wishlist-btn {
+    padding: 10px;
+}
+
+.wishlist-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Responsive Tabs */
+@media (max-width: 768px) {
+    .tabs-nav {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .tab-btn {
+        padding: 15px 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .tabs-content {
+        padding: 25px;
+    }
+
+    .tab-title {
+        font-size: 1.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .view-all-link {
+        align-self: flex-start;
+    }
+}
+                </style>
+            <!-- Course Additional Information Section -->
+<div class="course-additional-info">
+    <!-- Separator -->
+    <div class="section-separator"></div>
+
+    <!-- Tabs Section -->
+    <div class="course-tabs-section">
+        <div class="tabs-container">
+            <!-- Tabs Navigation -->
+            <div class="tabs-header">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="prerequisites">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                        </svg>
+                        <span>پیش‌نیازهای دوره</span>
+                    </button>
+
+                    <button class="tab-btn" data-tab="skills">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/>
+                        </svg>
+                        <span>مهارت‌های اکتسابی</span>
+                    </button>
+
+                    <button class="tab-btn" data-tab="announcements">
+                        <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                        </svg>
+                        <span>اعلانات و نظرات</span>
+                    </button>
+                </div>
+
+                <div class="tabs-indicator">
+                    <div class="indicator-bar"></div>
+                </div>
+            </div>
+
+            <!-- Tabs Content -->
+            <div class="tabs-content">
+                <!-- Tab 1: Prerequisites -->
+                <div class="tab-pane active" id="prerequisites">
+                    <div class="tab-content-header">
+                        <h3 class="tab-title">
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                            </svg>
+                            پیش‌نیازهای شرکت در دوره
+                        </h3>
+                        <p class="tab-subtitle">برای شرکت در این دوره بهتر است با موارد زیر آشنا باشید</p>
+                    </div>
+
+                    <div class="tab-body">
+                        <div class="prerequisites-content">
+                            {{ course.requirements|linebreaks }}
+                        </div>
+
+                        <div class="prerequisites-tips">
+                            <div class="tip-card">
+                                <div class="tip-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                                    </svg>
+                                </div>
+                                <div class="tip-content">
+                                    <h4>نکته مهم</h4>
+                                    <p>در صورت عدم آشنایی با پیش‌نیازها، می‌توانید در دوره‌های مقدماتی ما شرکت کنید.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Skills -->
+                <div class="tab-pane" id="skills">
+                    <div class="tab-content-header">
+                        <h3 class="tab-title">
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/>
+                            </svg>
+                            مهارت‌هایی که کسب خواهید کرد
+                        </h3>
+                        <p class="tab-subtitle">پس از اتمام موفقیت‌آمیز این دوره، به این مهارت‌ها مسلط خواهید شد</p>
+                    </div>
+
+                    <div class="tab-body">
+                        <div class="skills-content">
+                            {{ course.skills_after|linebreaks }}
+                        </div>
+
+                        <div class="skills-badges">
+                            <div class="skills-header">
+                                <h4>سطح مهارت‌ها پس از دوره</h4>
+                                <div class="skill-level">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-label">متوسط</span>
+                                </div>
+                            </div>
+
+                            <div class="skill-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">تسلط عملی</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 85%"></div>
+                                    </div>
+                                    <span class="metric-value">85%</span>
+                                </div>
+
+                                <div class="metric-item">
+                                    <span class="metric-label">آمادگی پروژه</span>
+                                    <div class="metric-bar">
+                                        <div class="metric-fill" style="width: 90%"></div>
+                                    </div>
+                                    <span class="metric-value">90%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 3: Announcements & Reviews -->
+                <div class="tab-pane" id="announcements">
+                    <div class="tab-content-header">
+                        <h3 class="tab-title">
+                            <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2zm-2 1H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6z"/>
+                            </svg>
+                            اعلانات
+                        </h3>
+                        <p class="tab-subtitle">آخرین اطلاعیه‌ها را در این بخش مشاهده کنید</p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Separator -->
+    <div class="section-separator"></div>
+
+    <!-- Related Courses -->
+    <div class="related-courses-section">
+        <div class="section-header">
+            <div class="header-content">
+                <h3 class="section-title">
+                    <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+                    </svg>
+                    دوره‌های مرتبط
+                </h3>
+                <p class="section-subtitle">دوره‌های مشابهی که ممکن است برای شما جذاب باشد</p>
+            </div>
+
+            <a href="#" class="view-all-link">
+                مشاهده همه دوره‌ها
+                <svg class="link-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="courses-grid">
+            <!-- Course 1 -->
+            <div class="course-card related">
+                <div class="course-image-wrapper">
+                    <img src="/static/upload/shop_01.jpg" alt="دوره برنامه‌نویسی پیشرفته" class="course-image">
+                    <div class="image-overlay">
+                        <button class="quick-view-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="course-badge">جدید</span>
+                </div>
+
+                <div class="course-content">
+                    <div class="course-category">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        <span>برنامه‌نویسی</span>
+                    </div>
+
+                    <h4 class="course-title">
+                        <a href="#" class="course-link">برنامه‌نویسی پیشرفته پایتون</a>
+                    </h4>
+
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span>دکتر احمدی</span>
+                        </div>
+
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span>۴۵ ساعت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-footer">
+                    <div class="course-price">
+                        <span class="price-current">۲,۹۰۰,۰۰۰</span>
+                        <span class="price-currency">تومان</span>
+                    </div>
+
+                    <div class="course-actions">
+                        <button class="action-btn add-to-cart">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                            افزودن به سبد
+                        </button>
+
+                        <button class="action-btn wishlist-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="course-card related">
+                <div class="course-image-wrapper">
+                    <img src="/static/upload/shop_02.jpg" alt="دوره طراحی رابط کاربری" class="course-image">
+                    <div class="image-overlay">
+                        <button class="quick-view-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="course-badge discount">۳۰٪ تخفیف</span>
+                </div>
+
+                <div class="course-content">
+                    <div class="course-category">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        <span>طراحی</span>
+                    </div>
+
+                    <h4 class="course-title">
+                        <a href="#" class="course-link">طراحی رابط کاربری حرفه‌ای</a>
+                    </h4>
+
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span>مهندس کریمی</span>
+                        </div>
+
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span>۳۲ ساعت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-footer">
+                    <div class="course-price">
+                        <span class="price-old">۴,۵۰۰,۰۰۰</span>
+                        <span class="price-current">۳,۱۵۰,۰۰۰</span>
+                        <span class="price-currency">تومان</span>
+                    </div>
+
+                    <div class="course-actions">
+                        <button class="action-btn add-to-cart">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                            افزودن به سبد
+                        </button>
+
+                        <button class="action-btn wishlist-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="course-card related">
+                <div class="course-image-wrapper">
+                    <img src="/static/upload/shop_03.jpg" alt="دوره هوش مصنوعی" class="course-image">
+                    <div class="image-overlay">
+                        <button class="quick-view-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="course-content">
+                    <div class="course-category">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
+                        </svg>
+                        <span>هوش مصنوعی</span>
+                    </div>
+
+                    <h4 class="course-title">
+                        <a href="#" class="course-link">مقدمات یادگیری ماشین</a>
+                    </h4>
+
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span>دکتر محمدی</span>
+                        </div>
+
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span>۵۶ ساعت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-footer">
+                    <div class="course-price">
+                        <span class="price-current">۴,۲۰۰,۰۰۰</span>
+                        <span class="price-currency">تومان</span>
+                    </div>
+
+                    <div class="course-actions">
+                        <button class="action-btn add-to-cart">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                            افزودن به سبد
+                        </button>
+
+                        <button class="action-btn wishlist-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course 4 -->
+            <div class="course-card related">
+                <div class="course-image-wrapper">
+                    <img src="/static/upload/shop_04.jpg" alt="دوره توسعه وب" class="course-image">
+                    <div class="image-overlay">
+                        <button class="quick-view-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="course-badge popular">پربازدید</span>
+                </div>
+
+                <div class="course-content">
+                    <div class="course-category">
+                        <svg class="category-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                        <span>توسعه وب</span>
+                    </div>
+
+                    <h4 class="course-title">
+                        <a href="#" class="course-link">توسعه Full-Stack با React</a>
+                    </h4>
+
+                    <div class="course-meta">
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                            <span>مهندس رضایی</span>
+                        </div>
+
+                        <div class="meta-item">
+                            <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                            </svg>
+                            <span>۶۸ ساعت</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-footer">
+                    <div class="course-price">
+                        <span class="price-current">۵,۶۰۰,۰۰۰</span>
+                        <span class="price-currency">تومان</span>
+                    </div>
+
+                    <div class="course-actions">
+                        <button class="action-btn add-to-cart">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                            </svg>
+                            افزودن به سبد
+                        </button>
+
+                        <button class="action-btn wishlist-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <script>
+
+                    // مدیریت سیستم تب‌ها
+document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    const indicatorBar = document.querySelector('.indicator-bar');
+
+    if (!tabButtons.length || !indicatorBar) return;
+
+    // تنظیم موقعیت اولیه نشانگر
+    const activeTab = document.querySelector('.tab-btn.active');
+    if (activeTab) {
+        const index = Array.from(tabButtons).indexOf(activeTab);
+        updateIndicatorPosition(index);
+    }
+
+    // مدیریت کلیک روی تب‌ها
+    tabButtons.forEach((button, index) => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // دریافت ID تب مورد نظر
+            const tabId = this.getAttribute('data-tab');
+
+            // حذف کلاس active از همه تب‌ها و پنل‌ها
+            tabButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            tabPanes.forEach(pane => {
+                pane.classList.remove('active');
+                pane.setAttribute('aria-hidden', 'true');
+            });
+
+            // اضافه کردن کلاس active به تب کلیک شده
+            this.classList.add('active');
+            this.setAttribute('aria-selected', 'true');
+
+            // نمایش پنل مرتبط
+            const targetPane = document.getElementById(tabId);
+            if (targetPane) {
+                targetPane.classList.add('active');
+                targetPane.setAttribute('aria-hidden', 'false');
+
+                // اضافه کردن انیمیشن
+                targetPane.style.animation = 'none';
+                setTimeout(() => {
+                    targetPane.style.animation = 'fadeIn 0.5s ease';
+                }, 10);
+            }
+
+            // به‌روزرسانی موقعیت نشانگر
+            updateIndicatorPosition(index);
+
+            // ذخیره تب انتخاب شده در localStorage (اختیاری)
+            localStorage.setItem('selectedTab', tabId);
+        });
+    });
+
+    // تابع به‌روزرسانی موقعیت نشانگر
+    function updateIndicatorPosition(index) {
+        const tabCount = tabButtons.length;
+        const widthPercent = 100 / tabCount;
+        const translateX = index * 100;
+
+        indicatorBar.style.transform = `translateX(${translateX}%)`;
+        indicatorBar.style.width = `${widthPercent}%`;
+    }
+
+    // بارگذاری تب انتخاب شده از localStorage (اختیاری)
+    const savedTab = localStorage.getItem('selectedTab');
+    if (savedTab) {
+        const savedTabButton = document.querySelector(`.tab-btn[data-tab="${savedTab}"]`);
+        if (savedTabButton && !savedTabButton.classList.contains('active')) {
+            savedTabButton.click();
+        }
+    }
+
+    // مدیریت کلیدهای کیبورد برای دسترسی‌پذیری
+    tabButtons.forEach((button, index) => {
+        button.addEventListener('keydown', function(e) {
+            const tabCount = tabButtons.length;
+
+            switch(e.key) {
+                case 'ArrowRight':
+                case 'ArrowDown':
+                    e.preventDefault();
+                    const nextIndex = (index + 1) % tabCount;
+                    tabButtons[nextIndex].focus();
+                    tabButtons[nextIndex].click();
+                    break;
+
+                case 'ArrowLeft':
+                case 'ArrowUp':
+                    e.preventDefault();
+                    const prevIndex = (index - 1 + tabCount) % tabCount;
+                    tabButtons[prevIndex].focus();
+                    tabButtons[prevIndex].click();
+                    break;
+
+                case 'Home':
+                    e.preventDefault();
+                    tabButtons[0].focus();
+                    tabButtons[0].click();
+                    break;
+
+                case 'End':
+                    e.preventDefault();
+                    tabButtons[tabCount - 1].focus();
+                    tabButtons[tabCount - 1].click();
+                    break;
+
+                case 'Enter':
+                case 'Space':
+                    e.preventDefault();
+                    this.click();
+                    break;
+            }
+        });
+    });
+
+    // تغییر خودکار تب‌ها (اختیاری - در صورت نیاز غیرفعال کنید)
+    let currentTabIndex = 0;
+    const autoSwitchInterval = setInterval(() => {
+        if (!document.hidden && tabButtons.length > 0) {
+            currentTabIndex = (currentTabIndex + 1) % tabButtons.length;
+            tabButtons[currentTabIndex].click();
+        }
+    }, 10000); // تغییر هر 10 ثانیه
+
+    // توقف تغییر خودکار هنگام هاور
+    const tabsContainer = document.querySelector('.tabs-nav');
+    if (tabsContainer) {
+        let isPaused = false;
+
+        tabsContainer.addEventListener('mouseenter', () => {
+            isPaused = true;
+            clearInterval(autoSwitchInterval);
+        });
+
+        tabsContainer.addEventListener('mouseleave', () => {
+            isPaused = false;
+        });
+
+        // از سرگیری تغییر خودکار وقتی کاربر از تب‌ها دور می‌شود
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(autoSwitchInterval);
+            } else if (!isPaused) {
+                setInterval(() => {
+                    if (!document.hidden && tabButtons.length > 0) {
+                        currentTabIndex = (currentTabIndex + 1) % tabButtons.length;
+                        tabButtons[currentTabIndex].click();
+                    }
+                }, 10000);
+            }
+        });
+    }
+});
+
+// اضافه کردن استایل‌های انیمیشن
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .tab-pane {
+        animation: fadeIn 0.5s ease;
+    }
+
+    .indicator-bar {
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .tab-btn:focus-visible {
+        outline: 2px solid #6366f1;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+`;
+document.head.appendChild(style);
+                </script>
+
+
+            <!-- end boxed -->
+            </div><!-- end container -->
+        </div>
+    </section>
+
+
+{% endblock %}

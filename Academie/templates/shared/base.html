@@ -1,0 +1,26 @@
+{% load render_partial %}
+
+<!DOCTYPE html>
+<html class="no-js " lang="fa">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,400i,700,700i" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>{% block title %}عنوان سایت{% endblock %}</title>
+{% include 'shared/header_references.html' %}
+</head>
+<body>
+
+
+
+{% render_partial 'home.views.site_header_partial' %}
+{% block content %} محتوا {% endblock %}
+
+
+{% render_partial 'home.views.site_footer_partial' %}
+{% include 'shared/footer_references.html' %}
+</body>
+</html>

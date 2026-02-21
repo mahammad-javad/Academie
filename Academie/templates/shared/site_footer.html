@@ -1,0 +1,112 @@
+<footer class="dark-footer">
+    <!-- Main Footer -->
+    <div class="footer-main">
+        <div class="footer-container">
+            <!-- Logo & About -->
+            <div class="footer-section about-section">
+                <a href="{% url 'home' %}" class="footer-logo">
+                    <img src="{{ site_info.logo.url }}" alt="Logo">
+                    <span class="logo-text">{{ site_info.name|default:"آکادمی" }}</span>
+                </a>
+                <p class="footer-description">
+                    ما در {{ site_info.name|default:"آکادمی" }} بهترین دوره‌های آموزشی را با کیفیت عالی ارائه می‌دهیم.
+                    یادگیری را با ما تجربه کنید.
+                </p>
+                <div class="footer-social">
+                    <a href="{{ site_info.telegram_url|default:'#' }}" class="social-icon telegram" title="تلگرام">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="{{ site_info.instagram_url|default:'#' }}" class="social-icon instagram" title="اینستاگرام">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="{{ site_info.linkedin_url|default:'#' }}" class="social-icon linkedin" title="لینکدین">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="{{ site_info.github_url|default:'#' }}" class="social-icon github" title="گیت‌هاب">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section links-section">
+                <h3 class="section-title">لینک‌های سریع</h3>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">خانه</a></li>
+                    <li><a href="{% url 'list_course' %}">دوره‌ها</a></li>
+                    <li><a href="#">رودمپ</a></li>
+                    <li><a href="#">مقالات</a></li>
+                    <li><a href="#">مشاوره</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-section contact-section">
+                <h3 class="section-title">تماس با ما</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ site_info.address|default:"تهران، خیابان آزادی" }}</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:{{ site_info.phone|default:'021-12345678' }}">
+                            {{ site_info.phone|default:"021-12345678" }}
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:{{ site_info.email|default:'info@example.com' }}">
+                            {{ site_info.email|default:"info@example.com" }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-bottom">
+        <div class="footer-container">
+            <div class="copyright">
+                <p>© <span id="currentYear"></span> {{ site_info.name|default:"آکادمی" }}. تمامی حقوق محفوظ است.</p>
+            </div>
+            
+            <div class="footer-extra">
+                <a href="#">حریم خصوصی</a>
+                <span class="divider">|</span>
+                <a href="#">قوانین</a>
+                <span class="divider">|</span>
+                <a href="#">تماس</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</footer>
+
+<div class="copyrights">
+    <div class="container">
+        <div class="clearfix">
+            <div class="pull-left">
+                <div class="cop-logo">
+                    <a href="#"><img src="/static/images/logo.png" alt=""></a>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <div class="footer-links">
+                    <ul class="list-inline">
+                        <li>Design : <a href="https://html.design">HTML.Design</a></li>
+                        <li>Distributed by : <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- end container -->
+</div><!-- end copy -->
+</div><!-- end wrapper -->

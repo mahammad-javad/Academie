@@ -1,0 +1,328 @@
+{% extends 'shared/base.html' %}
+{% load jformat %}
+
+
+{% block title %}لیست دوره ها{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    <section class="section lb p120">
+        <!-- عناصر شناور -->
+        <div class="floating-elements">
+            <span>📚</span>
+            <span>🎓</span>
+            <span>💡</span>
+            <span>✨</span>
+            <span>🚀</span>
+        </div>
+
+        <!-- شبکه پس‌زمینه -->
+        <div class="grid-overlay"></div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tagline-message page-title text-center">
+                        <h3>
+                            <a href="{% url 'list_course' %}">
+                                <span class="title-text">کلاس‌های آموزشی</span>
+                                <span class="title-emoji">🎯</span>
+                            </a>
+                        </h3>
+                        <ul class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i>
+                                <a href="{% url 'home' %}">دوره ها</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-group"></i>
+                                <a href="{% url 'list_course' %}">مهارت های درحال شکل گیری</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-star"></i>
+                                مهارت‌های ساخته شده
+                            </li>
+                        </ul>
+
+                        <!-- توضیح اضافی -->
+                        <div class="title-description">
+                            <p>مسیر موفقیت خود را با بهترین دوره‌های آموزشی بسازید</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="boxed boxedp4">
+        <div class="shop-top">
+            <div class="clearfix">
+                <div class="pull-left">
+                    <div class="pagination-info-dark">
+                        <p>
+                            <span class="icon">📊</span>
+                            نمایش
+                            <span class="number">{{ page_obj.start_index }}</span>
+                            <span class="separator">–</span>
+                            <span class="number">{{ page_obj.end_index }}</span>
+                            از
+                            <span class="number total">{{ page_obj.paginator.count }}</span>
+                            دوره
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pull-right">
+                    <form method="get" class="modern-select">
+                        <select name="status" onchange="this.form.submit()">
+                            <option value="">همه دوره‌ها</option>
+                            <option value="REGISTRATION"
+                                    {% if request.GET.status == 'REGISTRATION' %}selected{% endif %}>
+                                در حال ثبت‌نام
+                            </option>
+                            <option value="ONGOING" {% if request.GET.status == 'ONGOING' %}selected{% endif %}>
+                                در حال برگزاری
+                            </option>
+                            <option value="FINISHED"
+                                    {% if request.GET.status == 'FINISHED' %}selected{% endif %}>
+                                پایان یافته
+                            </option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="courses-grid-container">
+            <div class="courses-wrapper">
+                {% for course in courses %}
+                    <div class="course-item-wrapper">
+                        <div class="course-card {% if course.status == 'FINISHED' %}course-completed{% elif course.status == 'REGISTRATION' %}course-open{% elif course.status == 'ONGOING' %}course-live{% endif %}">
+
+                            <!-- Badge ظرفیت -->
+                            <div class="capacity-indicator">
+                                <div class="capacity-icon">
+                                    <svg viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                    </svg>
+                                </div>
+                                <span class="capacity-count">{{ course.capacity }}</span>
+                                <span class="capacity-label">ظرفیت</span>
+                            </div>
+
+                            <!-- تصویر دوره -->
+                            <div class="course-image-container">
+                                <a href="{% url 'course_detail' course.slug %}" class="course-image-link">
+                                    <img src="{{ course.image.url }}"
+                                         alt="{{ course.title }}"
+                                         class="course-thumbnail"
+                                         loading="lazy">
+
+                                    <!-- Overlay برای دوره‌های تمام شده -->
+                                    {% if course.status == 'FINISHED' %}
+                                        <div class="completed-overlay">
+                                            <div class="overlay-content">
+                                                <svg class="overlay-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                                </svg>
+                                                <span>تکمیل شده</span>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <!-- گرادینت overlay -->
+                                    <div class="image-gradient-overlay"></div>
+
+                                    <!-- وضعیت دوره روی تصویر -->
+                                    <div class="course-status-badge">
+                                        {% if course.status == 'FINISHED' %}
+                                            <span class="status-tag completed">پایان یافته</span>
+                                        {% elif course.status == 'REGISTRATION' %}
+                                            <span class="status-tag open">در حال ثبت‌نام</span>
+                                        {% elif course.status == 'ONGOING' %}
+                                            <span class="status-tag live">
+                                    <span class="live-dot"></span>
+                                    در حال برگزاری
+                                </span>
+                                        {% endif %}
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- اطلاعات دوره -->
+                            <div class="course-content">
+                                <div class="course-title-section">
+                                    <h3 class="course-name">
+                                        <a href="{% url 'course_detail' course.slug %}" class="course-link">
+                                            {{ course.title }}
+                                        </a>
+                                    </h3>
+                                    <p class="course-instructor">
+                                        <svg class="instructor-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                        </svg>
+                                        {{ course.teacher }}
+                                    </p>
+                                </div>
+
+                                <!-- رتبه‌بندی -->
+                                {% if course.rating %}
+                                    <div class="rating-section">
+                                        <div class="star-rating">
+                                            {% for i in "12345" %}
+                                                {% if forloop.counter <= course.rating %}
+                                                    <svg class="star-icon filled" viewBox="0 0 24 24"
+                                                         fill="currentColor">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                {% else %}
+                                                    <svg class="star-icon" viewBox="0 0 24 24" fill="currentColor">
+                                                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                                                    </svg>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <span class="rating-value">{{ course.rating }}</span>
+                                        <span class="rating-count">({{ course.review_count|default:"0" }} نظر)</span>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- فوتر دوره -->
+                            <div class="course-footer">
+                                <div class="course-meta">
+                                    <div class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                        </svg>
+                                        <span class="meta-label">شروع:</span>
+                                        <span class="meta-value">{{ course.start_date|jformat:"%y/%m/%d" }}</span>
+                                    </div>
+
+                                    <div class="meta-item">
+                                        <svg class="meta-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/>
+                                        </svg>
+                                        <span class="meta-label">مدت:</span>
+                                        <span class="meta-value">{{ course.duration }} جلسه</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-action">
+                                    <a href="{% url 'course_detail' course.slug %}" class="view-details-btn">
+                                        <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                        </svg>
+                                        مشاهده دوره
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <hr class="invis">
+
+        <div class="row text-center">
+            <div class="col-md-12">
+                {% if is_paginated %}
+                    <ul class="pagination">
+                        {# دکمه قبلی #}
+                        {% if page_obj.has_previous %}
+                            <li>
+                                <a href="?page=
+
+
+
+
+
+
+
+
+                                        {{ page_obj.previous_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                    &laquo;
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="disabled"><a href="javascript:void(0)">&laquo;</a></li>
+                        {% endif %}
+
+                        {# شماره صفحات #}
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if num == page_obj.number %}
+                                <li class="active"><a href="javascript:void(0)">{{ num }}</a></li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <li>
+                                    <a href="?page=
+
+
+
+
+
+
+
+
+                                            {{ num }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                        {{ num }}
+                                    </a>
+                                </li>
+                            {% elif num == 1 or num == page_obj.paginator.num_pages %}
+                                <li>
+                                    <a href="?page=
+
+
+
+
+
+
+
+
+                                            {{ num }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                        {{ num }}
+                                    </a>
+                                </li>
+                            {% elif forloop.first or forloop.last %}
+                                <li><a href="javascript:void(0)">...</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {# دکمه بعدی #}
+                        {% if page_obj.has_next %}
+                            <li>
+                                <a href="?page=
+
+
+
+
+
+
+
+
+                                        {{ page_obj.next_page_number }}{% if request.GET.status %}&status={{ request.GET.status }}{% endif %}">
+                                    &raquo;
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="disabled"><a href="javascript:void(0)">&raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div>
+
+
+
+
+
+{% endblock %}

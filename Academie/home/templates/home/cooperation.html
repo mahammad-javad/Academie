@@ -1,0 +1,184 @@
+{% extends 'shared/base.html' %}
+
+{% block title %}
+	درخواست همکاری
+{% endblock %}
+
+{% block content %}
+    <style>
+.simple-page.dark-theme {
+    background: #0a0a0f;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.simple-content {
+    max-width: 600px;
+    width: 100%;
+    background: #141420;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+}
+
+.simple-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #f8fafc;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f59e0b;
+    display: inline-block;
+}
+
+.conditions-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.conditions-text > p {
+    color: #cbd5e1;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.condition-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.condition-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: #f59e0b;
+    transform: translateX(5px);
+}
+
+.condition-marker {
+    color: #f59e0b;
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-width: 25px;
+}
+
+.condition-text {
+    color: #f8fafc;
+    font-size: 1.1rem;
+    text-align: right;
+    flex: 1;
+}
+
+.action-text {
+    margin-top: 30px !important;
+    color: #94a3b8 !important;
+    font-size: 1rem !important;
+}
+
+.simple-button {
+    display: inline-block;
+    background: #f59e0b;
+    color: #0a0a0f;
+    padding: 14px 35px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    margin-top: 10px;
+}
+
+.simple-button:hover {
+    background: transparent;
+    color: #f59e0b;
+    border-color: #f59e0b;
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .simple-content {
+        padding: 30px 25px;
+    }
+
+    .simple-title {
+        font-size: 1.7rem;
+    }
+
+    .condition-text {
+        font-size: 1rem;
+    }
+
+    .simple-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-content {
+        padding: 25px 20px;
+    }
+
+    .simple-title {
+        font-size: 1.5rem;
+    }
+
+    .condition-item {
+        padding: 10px 15px;
+    }
+
+    .simple-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+    </style>
+    <div class="simple-page dark-theme">
+    <div class="simple-content">
+        <h1 class="simple-title">شرایط همکاری با ما</h1>
+
+        <div class="conditions-text">
+            <p>برای همکاری با تیم ما، لطفاً شرایط زیر را مطالعه فرمایید:</p>
+
+            <div class="condition-item">
+                <span class="condition-marker">۱.</span>
+                <span class="condition-text">حداقل ۲ سال سابقه کار مرتبط</span>
+            </div>
+
+            <div class="condition-item">
+                <span class="condition-marker">۲.</span>
+                <span class="condition-text">تسلط به زبان انگلیسی</span>
+            </div>
+
+            <div class="condition-item">
+                <span class="condition-marker">۳.</span>
+                <span class="condition-text">توانایی کار تیمی</span>
+            </div>
+
+            <div class="condition-item">
+                <span class="condition-marker">۴.</span>
+                <span class="condition-text">آشنایی با نرم‌افزارهای تخصصی</span>
+            </div>
+
+            <p class="action-text">برای ثبت درخواست همکاری روی دکمه زیر کلیک کنید:</p>
+
+            <a href="#" class="simple-button">
+                ثبت درخواست همکاری
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

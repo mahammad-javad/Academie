@@ -1,0 +1,345 @@
+{% extends 'shared/base.html' %}
+{% load render_partial %}
+{% load static %}
+{% block title %}خانه{% endblock %}
+
+
+
+{% block content %}
+
+
+
+
+
+
+
+
+    <section dir="rtl" class="hero align">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="{{ site_info.hero_video.url }}" type="video/mp4">
+        </video>
+
+        <div class="hero-bg"></div>
+
+        <div class="hero-container">
+            <div class="hero-left">
+                <h1 style="color: white">مسیر حرفه‌ای برنامه‌نویسی</h1>
+                <h6 style="color: white">
+                    از صفر تا بازار کار با نقشه راه شفاف، منتورینگ واقعی
+                    و دوره‌هایی که فقط آموزش نیست، تجربه‌ست.
+                </h6>
+
+                <div class="hero-actions">
+                    <a href="#" class="btn-primary">مشاهده دوره‌ها</a>
+                    <a href="#" class="btn-outline">نقشه راه</a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+            <!-- About Section - Modern Dark Theme -->
+<section class="about-section dark-theme">
+    <div class="container-fluid">
+        <div class="about-grid">
+            <!-- Image Column -->
+            <div class="about-image-col">
+                <div class="image-container">
+                    <div class="image-wrapper">
+                        <img
+                            src="/static/images/ChatGPT%20Image%20Jan%2028,%202026,%2011_32_28%20PM.png"
+                            alt="درباره ما"
+                            class="about-image"
+                            loading="lazy"
+                        >
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <svg class="overlay-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>تخصص و تجربه</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="image-badges">
+                        <div class="badge-item">
+                            <div class="badge-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 1l3 6.5 7 1-5 4.5 1.5 7-6.5-3.5-6.5 3.5 1.5-7-5-4.5 7-1z"/>
+                                </svg>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-count">۵۰۰+</span>
+                                <span class="badge-label">پروژه موفق</span>
+                            </div>
+                        </div>
+
+                        <div class="badge-item">
+                            <div class="badge-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                </svg>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-count">۱۵۰+</span>
+                                <span class="badge-label">همکار متخصص</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Column -->
+            <div class="about-content-col">
+                <div class="content-container">
+                    <!-- Header -->
+                    <div class="content-header">
+                        <div class="section-label">
+                            <svg class="label-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <span>درباره ما</span>
+                        </div>
+
+                        <h1 class="main-title">
+                            <span class="title-highlight">{{ site_info.tagline }}</span>
+                            <span class="title-underline"></span>
+                        </h1>
+
+                        <div class="title-subtext">
+                            <svg class="subtext-icon" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                            <span>ارائه بهترین خدمات با بالاترین کیفیت</span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="content-description">
+                        <div class="description-text">
+                            <div class="quote-mark open">"</div>
+                            {{ site_info.about_text }}
+                            <div class="quote-mark close">"</div>
+                        </div>
+
+                        <div class="description-stats">
+                            <div class="stat-card">
+                                <div class="stat-number">۹۸%</div>
+                                <div class="stat-label">رضایت مشتریان</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">۱۰+</div>
+                                <div class="stat-label">سال تجربه</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Separator -->
+                    <div class="content-separator">
+                        <div class="separator-line"></div>
+                        <div class="separator-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="content-features">
+                        <div class="features-header">
+                            <h3 class="features-title">ویژگی‌های متمایز ما</h3>
+                            <p class="features-subtitle">چرا باید ما را انتخاب کنید؟</p>
+                        </div>
+
+                        <div class="features-grid">
+                            {% for column in columns %}
+                            <div class="feature-column column-{{ forloop.counter }}">
+                                <div class="column-header">
+                                    <div class="column-icon">
+                                        {% if forloop.counter == 1 %}
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                                        </svg>
+                                        {% elif forloop.counter == 2 %}
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z"/>
+                                        </svg>
+                                        {% else %}
+                                        <svg viewBox="0 0 24 24" fill="currentColor">
+                                            <path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/>
+                                        </svg>
+                                        {% endif %}
+                                    </div>
+                                    <h4 class="column-title">
+                                        {% if forloop.counter == 1 %}
+                                        کیفیت بی‌نظیر
+                                        {% elif forloop.counter == 2 %}
+                                        تخصص بالا
+                                        {% else %}
+                                        پشتیبانی دائمی
+                                        {% endif %}
+                                    </h4>
+                                </div>
+
+                                <ul class="feature-list">
+                                    {% for item in column %}
+                                    <li class="feature-item">
+                                        <div class="feature-marker"></div>
+                                        <div class="feature-text">{{ item.description }}</div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Separator -->
+                    <div class="content-separator">
+                        <div class="separator-line"></div>
+                        <div class="separator-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="content-cta">
+                        <div class="cta-content">
+                            <h3 class="cta-title">آماده شروع همکاری هستید؟</h3>
+                            <p class="cta-description">اولین جلسه مشاوره رایگان را رزرو کنید و از مشاوره تخصصی ما بهره‌مند شوید</p>
+
+                            <div class="cta-badges">
+                                <div class="cta-badge">
+                                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <span>مشاوره رایگان</span>
+                                </div>
+                                <div class="cta-badge">
+                                    <svg class="badge-icon" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                                    </svg>
+                                    <span>زمان محدود</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cta-actions">
+                            <a href="#" class="cta-btn primary-btn">
+                                <span class="btn-text">دریافت مشاوره رایگان</span>
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                                </svg>
+                            </a>
+
+                            <a href="#" class="cta-btn secondary-btn">
+                                <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                                </svg>
+                                <span class="btn-text">تماس با ما</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{#    <section class="section db p120">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-12">#}
+{#                    <div class="tagline-message text-center">#}
+{#                        <h3>Howdy, we are Edulogy, we have brought together the best quality services, offers,#}
+{#                            projects for you!</h3>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{#            </div><!-- end row -->#}
+{#        </div><!-- end container -->#}
+{#    </section><!-- end section -->#}
+{##}
+{#    <section class="section gb nopadtop">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-3">#}
+{#                    <div class="box m30">#}
+{#                        <i class="flaticon-computer-tool-for-education"></i>#}
+{#                        <h4>Learning system</h4>#}
+{#                        <p>All sections required for online training are included to Edulogy.</p>#}
+{#                        <a href="#" class="readmore">Read more</a>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{##}
+{#                <div class="col-md-6">#}
+{#                    <div class="box m30">#}
+{#                        <i class="flaticon-monitor-tablet-and-smartohone"></i>#}
+{#                        <h4>Works all mobile devices</h4>#}
+{#                        <p>The most important feature of this template is that it is compatible with all mobile#}
+{#                            devices. Your customers can also visit your site easily from tablets and phones.</p>#}
+{#                        <a href="#" class="readmore">Read more</a>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{##}
+{#                <div class="col-md-3">#}
+{#                    <div class="box m30">#}
+{#                        <i class="flaticon-download-business-statistics-symbol-of-a-graphic"></i>#}
+{#                        <h4>User Dashboard</h4>#}
+{#                        <p>We designed the design of all the sub-pages needed for the users.</p>#}
+{#                        <a href="#" class="readmore">Read more</a>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{#            </div><!-- end row -->#}
+{##}
+{#            <hr class="invis">#}
+{##}
+{#            <div class="row">#}
+{#                <div class="col-md-6">#}
+{#                    <div class="box">#}
+{#                        <i class="flaticon-html5"></i> <i class="flaticon-css-3"></i>#}
+{#                        <h4>Compatible HTML5 & CSS3</h4>#}
+{#                        <p>HTML5 is a markup language used for structuring and presenting content on the World Wide#}
+{#                            Web. It is the fifth and current version of the HTML standard.</p>#}
+{#                        <a href="#" class="readmore">Read more</a>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{##}
+{#                <div class="col-md-6">#}
+{#                    <div class="box">#}
+{#                        <i class="flaticon-html-coding"></i>#}
+{#                        <h4>Bootstrap Framework</h4>#}
+{#                        <p>Bootstrap is a technique of loading a program into a computer by means of a few initial#}
+{#                            instructions which enable the introduction of the rest of the program from an input#}
+{#                            device.</p>#}
+{#                        <a href="#" class="readmore">Read more</a>#}
+{#                    </div>#}
+{#                </div><!-- end col -->#}
+{#            </div><!-- end row -->#}
+{#        </div><!-- end container -->#}
+{#    </section>#}
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+

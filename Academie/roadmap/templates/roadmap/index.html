@@ -1,0 +1,863 @@
+{% extends 'shared/base.html' %}
+
+
+{% block title %}
+	uhy7u
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <div class="skills-roadmap">
+        <!-- Header Section -->
+        <header class="roadmap-header">
+            <div class="header-content">
+                <h1 class="main-title">
+                    <i class="fas fa-map-marked-alt"></i>
+                    نقشه راه مهارت‌های برنامه‌نویسی
+                </h1>
+                <p class="subtitle">از مقدماتی تا پیشرفته - مسیر یادگیری خود را انتخاب کنید</p>
+            </div>
+        </header>
+
+        <!-- Category Filter -->
+        <section class="category-section">
+            <div class="section-title">
+                <i class="fas fa-filter"></i>
+                <h2>انتخاب دسته‌بندی مهارت</h2>
+            </div>
+
+            <div class="category-filters">
+                <div class="filter-container">
+                    <input type="radio" name="category" id="all" class="category-radio" checked>
+                    <label for="all" class="category-btn">
+                        <i class="fas fa-layer-group"></i>
+                        <span>همه مهارت‌ها</span>
+                    </label>
+
+                    <input type="radio" name="category" id="frontend" class="category-radio">
+                    <label for="frontend" class="category-btn">
+                        <i class="fas fa-desktop"></i>
+                        <span>فرانت‌اند</span>
+                    </label>
+
+                    <input type="radio" name="category" id="backend" class="category-radio">
+                    <label for="backend" class="category-btn">
+                        <i class="fas fa-server"></i>
+                        <span>بک‌اند</span>
+                    </label>
+
+                    <input type="radio" name="category" id="ai-ml" class="category-radio">
+                    <label for="ai-ml" class="category-btn">
+                        <i class="fas fa-brain"></i>
+                        <span>هوش مصنوعی</span>
+                    </label>
+
+                    <input type="radio" name="category" id="devops" class="category-radio">
+                    <label for="devops" class="category-btn">
+                        <i class="fas fa-cogs"></i>
+                        <span>دواپس</span>
+                    </label>
+
+                    <input type="radio" name="category" id="database" class="category-radio">
+                    <label for="database" class="category-btn">
+                        <i class="fas fa-database"></i>
+                        <span>بانک اطلاعاتی</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" placeholder="جستجوی مهارت (مثال: React, Python, Docker)">
+                    <button class="search-clear">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="view-toggle">
+                    <input type="radio" name="view" id="listView" class="view-radio" checked>
+                    <label for="listView" class="view-btn">
+                        <i class="fas fa-list"></i>
+                        <span>نمایش لیستی</span>
+                    </label>
+
+                    <input type="radio" name="view" id="treeView" class="view-radio">
+                    <label for="treeView" class="view-btn">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>نمایش درختی</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- List View Section -->
+        <section class="list-section">
+            <div class="section-title">
+                <i class="fas fa-list-ul"></i>
+                <h2>لیست مهارت‌ها</h2>
+                <span class="skills-count">۲۴ مهارت</span>
+            </div>
+
+            <div class="skills-list">
+                <!-- مهارت ۱ -->
+                <div class="skill-item" data-category="frontend beginner">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">HTML5</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    فرانت‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۱۵ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            یادگیری ساختار صفحات وب با HTML5 و تگ‌های جدید
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge beginner">مقدماتی</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 30%"></div>
+                            </div>
+                            <span class="progress-text">۳۰٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۲ -->
+                <div class="skill-item" data-category="frontend beginner">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-css3-alt"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">CSS3</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    فرانت‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۲۰ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            استایل‌دهی حرفه‌ای صفحات وب با CSS3 و Flexbox
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge beginner">مقدماتی</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <span class="progress-text">۶۵٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۳ -->
+                <div class="skill-item" data-category="frontend intermediate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-js"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">JavaScript</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    فرانت‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۴۰ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            برنامه‌نویسی سمت کلاینت و تعامل با DOM
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge intermediate">متوسط</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="progress-text">۴۵٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۴ -->
+                <div class="skill-item" data-category="frontend intermediate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-react"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">React.js</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    فرانت‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۳۵ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            ساخت رابط کاربری مدرن با کتابخانه React
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge intermediate">متوسط</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <span class="progress-text">۲۰٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۵ -->
+                <div class="skill-item" data-category="backend intermediate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-node-js"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">Node.js</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    بک‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۳۰ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            توسعه سمت سرور با JavaScript و Express.js
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge intermediate">متوسط</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 10%"></div>
+                            </div>
+                            <span class="progress-text">۱۰٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۶ -->
+                <div class="skill-item" data-category="backend beginner">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">Python</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    بک‌اند
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۲۵ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            برنامه‌نویسی سرور با پایتون و فریمورک Django
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge beginner">مقدماتی</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-text">۰٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۷ -->
+                <div class="skill-item" data-category="database intermediate">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">MongoDB</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    بانک اطلاعاتی
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۱۸ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            کار با پایگاه داده NoSQL و ذخیره‌سازی سندمحور
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge intermediate">متوسط</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="progress-text">۷۵٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۸ -->
+                <div class="skill-item" data-category="ai-ml advanced">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">Machine Learning</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    هوش مصنوعی
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۵۰ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            یادگیری ماشین با پایتون و کتابخانه scikit-learn
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge advanced">پیشرفته</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 5%"></div>
+                            </div>
+                            <span class="progress-text">۵٪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- مهارت ۹ -->
+                <div class="skill-item" data-category="devops advanced">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fab fa-docker"></i>
+                        </div>
+                        <div class="skill-info">
+                            <h3 class="skill-name">Docker</h3>
+                            <div class="skill-meta">
+                                <span class="skill-category">
+                                    <i class="fas fa-tag"></i>
+                                    دواپس
+                                </span>
+                                <span class="skill-duration">
+                                    <i class="fas fa-clock"></i>
+                                    ۲۲ ساعت
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-body">
+                        <p class="skill-description">
+                            کانتینری‌سازی و مدیریت محیط‌های توسعه
+                        </p>
+                        <div class="skill-level">
+                            <span class="level-badge advanced">پیشرفته</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-footer">
+                        <button class="btn-start">
+                            <i class="fas fa-play-circle"></i>
+                            شروع یادگیری
+                        </button>
+                        <div class="skill-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 15%"></div>
+                            </div>
+                            <span class="progress-text">۱۵٪</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tree View Section (Hidden by default) -->
+        <section class="tree-section" style="display: none;">
+            <div class="section-title">
+                <i class="fas fa-project-diagram"></i>
+                <h2>نمایش درختی مهارت‌ها</h2>
+            </div>
+
+            <!-- Beginner Level -->
+            <div class="tree-level beginner-level">
+                <div class="level-header">
+                    <div class="level-badge">
+                        <i class="fas fa-seedling"></i>
+                        <h3>سطح مقدماتی</h3>
+                    </div>
+                    <p class="level-description">پایه‌های ضروری برای شروع برنامه‌نویسی</p>
+                </div>
+
+                <div class="skills-tree">
+                    <div class="skill-node" data-category="frontend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>HTML5</h4>
+                                <span class="node-category">فرانت‌اند</span>
+                            </div>
+                        </div>
+                        <div class="node-connector">
+                            <div class="connector-line"></div>
+                            <div class="connector-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="frontend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>CSS3</h4>
+                                <span class="node-category">فرانت‌اند</span>
+                            </div>
+                        </div>
+                        <div class="node-connector">
+                            <div class="connector-line"></div>
+                            <div class="connector-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="backend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>Python</h4>
+                                <span class="node-category">بک‌اند</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intermediate Level -->
+            <div class="tree-level intermediate-level">
+                <div class="level-header">
+                    <div class="level-badge">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>سطح متوسط</h3>
+                    </div>
+                    <p class="level-description">تکنولوژی‌های پیشرفته و فریمورک‌ها</p>
+                </div>
+
+                <div class="skills-tree">
+                    <div class="skill-node" data-category="frontend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>JavaScript</h4>
+                                <span class="node-category">فرانت‌اند</span>
+                            </div>
+                        </div>
+                        <div class="node-connector">
+                            <div class="connector-line"></div>
+                            <div class="connector-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="frontend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>React.js</h4>
+                                <span class="node-category">فرانت‌اند</span>
+                            </div>
+                        </div>
+                        <div class="node-connector">
+                            <div class="connector-line"></div>
+                            <div class="connector-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="backend">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>Node.js</h4>
+                                <span class="node-category">بک‌اند</span>
+                            </div>
+                        </div>
+                        <div class="node-connector">
+                            <div class="connector-line"></div>
+                            <div class="connector-arrow">↓</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="database">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>MongoDB</h4>
+                                <span class="node-category">بانک اطلاعاتی</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Level -->
+            <div class="tree-level advanced-level">
+                <div class="level-header">
+                    <div class="level-badge">
+                        <i class="fas fa-crown"></i>
+                        <h3>سطح پیشرفته</h3>
+                    </div>
+                    <p class="level-description">مهارت‌های تخصصی و معماری‌های پیچیده</p>
+                </div>
+
+                <div class="skills-tree">
+                    <div class="skill-node" data-category="ai-ml">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>Machine Learning</h4>
+                                <span class="node-category">هوش مصنوعی</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-node" data-category="devops">
+                        <div class="node-content">
+                            <div class="node-icon">
+                                <i class="fab fa-docker"></i>
+                            </div>
+                            <div class="node-info">
+                                <h4>Docker</h4>
+                                <span class="node-category">دواپس</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Stats -->
+        <footer class="roadmap-footer">
+            <div class="footer-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۲۴</span>
+                        <span class="stat-label">مهارت فعال</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۲۸۵</span>
+                        <span class="stat-label">ساعت آموزش</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۱,۲۳۴</span>
+                        <span class="stat-label">دانشجوی فعال</span>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-number">۴.۸</span>
+                        <span class="stat-label">رضایت‌مندی</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-actions">
+                <button class="btn-download">
+                    <i class="fas fa-download"></i>
+                    دانلود نقشه راه
+                </button>
+                <button class="btn-print">
+                    <i class="fas fa-print"></i>
+                    چاپ نقشه
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Skill Details Modal (Hidden by default) -->
+    <div class="skill-modal" id="skillModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fab fa-react"></i>
+                </div>
+                <div class="modal-title">
+                    <h2>React.js</h2>
+                    <div class="modal-subtitle">
+                        <span class="category-badge">فرانت‌اند</span>
+                        <span class="level-badge intermediate">متوسط</span>
+                    </div>
+                </div>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-description">
+                    <h3>توضیحات مهارت</h3>
+                    <p>React.js یک کتابخانه JavaScript برای ساخت رابط‌های کاربری است. با استفاده از کامپوننت‌های قابل استفاده مجدد، می‌توانید برنامه‌های وب پیچیده و مقیاس‌پذیر بسازید.</p>
+                </div>
+
+                <div class="modal-details">
+                    <div class="detail-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <span class="detail-label">مدت زمان</span>
+                            <span class="detail-value">۳۵ ساعت</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <span class="detail-label">پیش‌نیاز</span>
+                            <span class="detail-value">HTML, CSS, JavaScript</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <span class="detail-label">سطح دشواری</span>
+                            <span class="detail-value">متوسط</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-courses">
+                    <h3>دوره‌های مرتبط</h3>
+                    <div class="course-list">
+                        <div class="course-item">
+                            <div class="course-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>آموزش React مقدماتی</h4>
+                                <span class="course-duration">۱۵ ساعت</span>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>آموزش Hooks و Context API</h4>
+                                <span class="course-duration">۱۲ ساعت</span>
+                            </div>
+                        </div>
+
+                        <div class="course-item">
+                            <div class="course-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <div class="course-info">
+                                <h4>آموزش React Router</h4>
+                                <span class="course-duration">۸ ساعت</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-enroll">
+                    <i class="fas fa-shopping-cart"></i>
+                    ثبت‌نام در دوره
+                </button>
+                <button class="btn-preview">
+                    <i class="fas fa-eye"></i>
+                    مشاهده پیش‌نمایش
+                </button>
+            </div>
+        </div>
+    </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const listView = document.getElementById("listView");
+    const treeView = document.getElementById("treeView");
+
+    const listSection = document.querySelector(".list-section");
+    const treeSection = document.querySelector(".tree-section");
+
+    listView.addEventListener("change", () => {
+        if (listView.checked) {
+            listSection.style.display = "block";
+            treeSection.style.display = "none";
+        }
+    });
+
+    treeView.addEventListener("change", () => {
+        if (treeView.checked) {
+            treeSection.style.display = "block";
+            listSection.style.display = "none";
+        }
+    });
+});
+</script>
+
+{% endblock %}

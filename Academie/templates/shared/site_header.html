@@ -1,0 +1,259 @@
+
+<!-- Header Start -->
+<header class="dark-header">
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <a href="tel:{{ site_info.number }}" class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>{{ site_info.number }}</span>
+                    </a>
+                    <a href="mailto:{{ site_info.email }}" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>{{ site_info.email }}</span>
+                    </a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class=social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="logo">
+                    <span class="logo-text">DEVIO</span>
+                    <span class="logo-text">آکادمی</span>
+                    
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="nav-menu" id="navMenu">
+                    <a href="{% url 'home' %}" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>خانه</span>
+                    </a>
+                    
+                    <a href="{% url 'list_course' %}" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>دوره‌ها</span>
+                    </a>
+                    
+                    <a href="{% url 'roadmap_page' %}" class="nav-link">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>رودمپ</span>
+                    </a>
+                    
+                    <a href="{% url 'consultation' %}" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        <span>مشاوره</span>
+                    </a>
+                    
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>مقالات</span>
+                    </a>
+                    
+                    <!-- User Dropdown -->
+                    <div class="dropdown">
+                        <button class="dropdown-toggle user-dropdown">
+                            <i class="fas fa-user-circle"></i>
+                            <span>
+                                {% if request.user.is_authenticated %}
+                                    {{ request.user.username }}
+                                {% else %}
+                                    حساب کاربری
+                                {% endif %}
+                            </span>
+                            <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </button>
+                        
+                        <div class="dropdown-menu">
+                            {% if request.user.is_authenticated %}
+                                <div class="dropdown-header">
+                                    <i class="fas fa-user"></i>
+                                    <span>{{ request.user.get_full_name|default:request.user.username }}</span>
+                                </div>
+                                
+                                <a href="{% url 'user_panel' %}" class="dropdown-item">
+                                    <i class="fas fa-user-cog"></i>
+                                    <span>پروفایل</span>
+                                </a>
+                                
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-book-open"></i>
+                                    <span>دوره‌های من</span>
+                                </a>
+                                
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'admin:index' %}" class="dropdown-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>پنل مدیریت</span>
+                                    </a>
+                                {% endif %}
+                                
+                                <div class="dropdown-divider"></div>
+                                
+                                <a href="{% url 'logout_page' %}" class="dropdown-item logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>خروج</span>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'login_page' %}" class="dropdown-item">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>ورود</span>
+                                </a>
+                                
+                                <a href="{% url 'register_page' %}" class="dropdown-item register">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>ثبت‌نام</span>
+                                </a>
+                                
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-key"></i>
+                                    <span>فراموشی رمز</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    {% if not request.user.is_authenticated %}
+                        <a href="{% url 'register_page' %}" class="cta-button">
+                            <i class="fas fa-rocket"></i>
+                            <span>شروع یادگیری</span>
+                        </a>
+                    {% endif %}
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button class="mobile-toggle" id="mobileToggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+<!-- Header End -->
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+
+<script>
+    // ======== عناصر DOM ========
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const navMenu = document.getElementById('navMenu');
+const dropdowns = document.querySelectorAll('.dropdown');
+
+// ======== توگل منوی موبایل ========
+mobileToggle.addEventListener('click', () => {
+    mobileToggle.classList.toggle('active');
+    mobileOverlay.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+});
+
+// ======== بستن منوی موبایل با کلیک روی overlay ========
+mobileOverlay.addEventListener('click', () => {
+    closeMobileMenu();
+});
+
+// ======== Dropdown موبایل با کلیک ========
+dropdowns.forEach(dropdown => {
+    const toggle = dropdown.querySelector('.dropdown-toggle');
+
+    toggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) { // موبایل
+            e.preventDefault();
+            e.stopPropagation();
+            dropdown.classList.toggle('active');
+        }
+    });
+});
+
+// ======== بستن dropdown ها هنگام کلیک خارج ========
+document.addEventListener('click', (e) => {
+    // فقط موبایل نیاز به active دارد
+    if (window.innerWidth <= 768) {
+        dropdowns.forEach(dropdown => {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+    }
+});
+
+// ======== بستن منوی موبایل ========
+function closeMobileMenu() {
+    mobileToggle.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+    navMenu.classList.remove('active');
+    document.body.style.overflow = '';
+    dropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+}
+
+// ======== بستن منوی موبایل هنگام کلیک روی لینک ========
+document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// ======== فعال کردن لینک فعلی ========
+const currentPath = window.location.pathname;
+document.querySelectorAll('.nav-link').forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (currentPath === linkPath || (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+        link.classList.add('active');
+    } else {
+        link.classList.remove('active');
+    }
+});
+
+// ======== هدر چسبنده با اسکرول ========
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.dark-header');
+    if (window.scrollY > 100) {
+        header.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.6)';
+        header.style.background = 'rgba(10, 10, 15, 0.95)';
+    } else {
+        header.style.boxShadow = 'var(--shadow-lg)';
+        header.style.background = 'var(--primary-black)';
+    }
+});
+
+// ======== مدیریت تغییر اندازه صفحه ========
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        closeMobileMenu(); // منوی موبایل را ببند
+    }
+});
+
+</script>
